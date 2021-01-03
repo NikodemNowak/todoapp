@@ -1,0 +1,17 @@
+1. Logowanie
+2. Rejestracja
+3. Użytkownik może tworzyć listy zadań (nazwa, cel, ...)
+4. Każda lista zadań może mieć zadania (todosy)
+
+np. Lista zadań "DOM"
+- Todos 1: "Odkurzyc"
+- Tosos 2: "umyć costam"
+
+5. Każde zadanie ma (nazwa, krotki opis, kiedy stworzone, deadline, 
+czy_wykonano, kiedy wykonano, status={do zrobienia, w trakcie, wykonane})
+
+-- advanced --
+6. Użytkownik może wyświetlić swój profil i edytować dane, resetować hasło, itp
+7. Autor listy zadań może zapraszać do współuczestnictwa innych użytkowników
+8. Każde zadanie może być przypisane do jednego lub kilku użytkowników
+9. Mozliwosc tworzenia wlasnych statusow dla kazdych list zadan
