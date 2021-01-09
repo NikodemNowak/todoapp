@@ -2,8 +2,17 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="440266f3-c9ff-4b6c-be06-9052bae42098" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/AddTaskListPage.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/ApiRepository.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../todoapp-backend/src/main/kotlin/com/nikodem/todoapp/backend/DemoDataGenerator.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../todoapp-backend/src/main/kotlin/com/nikodem/todoapp/backend/DemoDataGenerator.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../todoapp-backend/src/main/kotlin/com/nikodem/todoapp/backend/dto/PostTaskListDTO.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../todoapp-backend/src/main/kotlin/com/nikodem/todoapp/backend/dto/PostTaskListDTO.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../todoapp-backend/src/main/kotlin/com/nikodem/todoapp/backend/entity/TaskList.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../todoapp-backend/src/main/kotlin/com/nikodem/todoapp/backend/entity/TaskList.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../todoapp-backend/src/main/kotlin/com/nikodem/todoapp/backend/mapper/TaskListMapper.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../todoapp-backend/src/main/kotlin/com/nikodem/todoapp/backend/mapper/TaskListMapper.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.eslintcache" beforeDir="false" afterPath="$PROJECT_DIR$/.eslintcache" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/debug.log" beforeDir="false" afterPath="$PROJECT_DIR$/debug.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/DropdownMenu.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/DropdownMenu.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -46,6 +55,7 @@
     <property name="last_opened_file_path" value="$USER_HOME$/IdeaProjects/orders-frontend" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
+    <property name="ts.external.directory.path" value="C:\Users\User\AppData\Local\JetBrains\Toolbox\apps\WebStorm\ch-0\203.6682.155\plugins\JavaScriptLanguage\jsLanguageServicesImpl\external" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
@@ -68,7 +78,7 @@
       <workItem from="1610057987492" duration="22000" />
       <workItem from="1610110932125" duration="78000" />
       <workItem from="1610179664971" duration="2033000" />
-      <workItem from="1610182128510" duration="1330000" />
+      <workItem from="1610182128510" duration="10311000" />
     </task>
     <task id="LOCAL-00001" summary="Added base structure">
       <created>1609665389015</created>

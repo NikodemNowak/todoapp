@@ -21,29 +21,31 @@ class TaskListMapperImpl(
     override fun toEntity(postTaskListDTO: PostTaskListDTO): TaskList {
         with(postTaskListDTO) {
             val taskList = TaskList(name, goal)
-            postTaskListDTO.users.forEach {
 
-                val user = userRepository.findByIdAndExpiredIsFalse(it.userId)
-                        ?: throw Exception("User with id ${it.userId} not found")
-
-                taskList.users.add(User(user.firstName,
-                                        user.lastName,
-                                        user.username,
-                                        user.password,
-                                        user.email))
-            }
-
-            postTaskListDTO.tasks.forEach {
+            tasks.forEach {
                 val task = taskRepository.findByIdAndExpiredIsFalse(it.taskId)
                         ?: throw Exception("Task with id ${it.taskId} not found")
 
                 taskList.tasks.add(Task(task.name,
-                                        task.description,
-                                        task.deadline,
-                                        task.completed,
-                                        task.endDate,
-                                        task.status))
+                        task.description,
+                        task.deadline,
+                        task.completed,
+                        task.endDate,
+                        task.status))
             }
+
+            users.forEach {
+                val user = userRepository.findByIdAndExpiredIsFalse(it.userId)
+                        ?: throw Exception("User with id ${it.userId} not found")
+
+                taskList.users.add(User(user.firstName,
+                        user.lastName,
+                        user.username,
+                        user.password,
+                        user.email))
+            }
+
+            println(taskList)
 
             return taskList
         }

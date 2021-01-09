@@ -23,8 +23,10 @@ class DemoDataGenerator(
         val toDo = taskStatusRepository.save(TaskStatus("TO_DO"))
         val inProgress = taskStatusRepository.save(TaskStatus("IN_PROGRESS"))
         val done = taskStatusRepository.save(TaskStatus("DONE"))
-        val user = userRepository.save(User("Adam", "Jakistam", "AdamJ", "pass123", "adamJ@gmail.com"))
+        val user = userRepository.save(User("Adam", "Jakistam", "AdamJ", "pass123", "adamk@gmail.com"))
+        val user1 = userRepository.save(User("Krzysztof", "Ktostam", "KrzysztofK", "pass321", "krzysztofk@gmail.com"))
         val task = taskRepository.save(Task("zadanie", "jakis tam opis", LocalDateTime.now(), false, LocalDateTime.now(), toDo))
-        val taskList = taskListRepository.save(TaskList("lista", "ukonczyc liste", mutableSetOf(user), mutableSetOf(task)))
+        val task1 = taskRepository.save(Task("zadanie1", "jakis tam opis", LocalDateTime.now(), false, LocalDateTime.now(), inProgress))
+        val taskList = taskListRepository.save(TaskList("lista", "ukonczyc liste", mutableSetOf(task) , mutableSetOf(user1, user)))
     }
 }

@@ -70,7 +70,7 @@ fun TaskList.toDto(): TaskListDTO {
         user.add(it.id!!)
     }
     val task = mutableSetOf<Long>()
-    users.forEach {
+    tasks.forEach {
         task.add(it.id!!)
     }
     return TaskListDTO(id, name, goal, task, user)
