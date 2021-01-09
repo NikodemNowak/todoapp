@@ -8,7 +8,7 @@ data class PostTaskDTO(
         val name: String,
         val description: String,
         val deadline: LocalDateTime,
-        val completed: Boolean,
+        val completed: Boolean = false,
         val endDate: LocalDateTime? = null,
         var status: String
 )

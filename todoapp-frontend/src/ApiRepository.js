@@ -16,10 +16,14 @@ instance.interceptors.response.use(response => {
 })
 
 function getTaskLists() {
-    instance.get('/tasks/lists').then(r => r.data)
+    return instance.get('/tasks/lists').then(r => r.data)
+}
+
+function addTask(data) {
+    instance.post('/tasks', data).then(r => console.log(r))
 }
 
 export {
     getTaskLists,
-
+    addTask
 }

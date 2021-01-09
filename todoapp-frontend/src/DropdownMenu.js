@@ -82,7 +82,8 @@ function TaskListMenu() {
                 onClose={handleClose}
                 style={style}
             >
-                <MenuItem onClick={() => open('http://localhost:3000/addTaskList')}>Add Task List</MenuItem>
+                <MenuItem onClick={() => open('http://localhost:3000/addTaskList')}>Add</MenuItem>
+                <MenuItem onClick={() => open('http://localhost:3000/taskListsTable')}>Table</MenuItem>
             </Menu>
         </div>
     );
