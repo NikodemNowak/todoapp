@@ -28,5 +28,6 @@ class DemoDataGenerator(
         val task = taskRepository.save(Task("zadanie", "jakis tam opis", LocalDateTime.now(), false, LocalDateTime.now(), toDo))
         val task1 = taskRepository.save(Task("zadanie1", "jakis tam opis", LocalDateTime.now(), false, LocalDateTime.now(), inProgress))
         val taskList = taskListRepository.save(TaskList("lista", "ukonczyc liste", mutableSetOf(task) , mutableSetOf(user1, user)))
+        val taskList1 = taskListRepository.save(TaskList("lista1", "ukonczyc liste", mutableSetOf(task1) , mutableSetOf(user, user1)))
     }
 }
