@@ -5,4 +5,7 @@ import org.springframework.data.jpa.repository.JpaRepository
 import org.springframework.stereotype.Repository
 
 @Repository
-interface TaskStatusRepository : JpaRepository<TaskStatus, Long>
+interface TaskStatusRepository : JpaRepository<TaskStatus, Long> {
+    fun findByNameAndExpiredIsFalse(name: String): TaskStatus?
+    fun findAllByExpiredIsFalse(): List<TaskStatus>
+}
