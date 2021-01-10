@@ -23,7 +23,12 @@ function addTask(data) {
     instance.post('/tasks', data).then(r => console.log(r))
 }
 
+function getTaskList(id) {
+    return instance.get('/tasks/lists/' + id).then(r => r.data)
+}
+
 export {
     getTaskLists,
-    addTask
+    addTask,
+    getTaskList
 }
