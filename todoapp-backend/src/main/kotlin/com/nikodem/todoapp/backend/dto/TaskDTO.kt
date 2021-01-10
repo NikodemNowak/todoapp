@@ -3,7 +3,7 @@ package com.nikodem.todoapp.backend.dto
 import java.time.LocalDateTime
 
 data class TaskDTO(
-        val taskId: Long,
+        val id: Long,
         val name: String,
         val description: String,
         val deadline: LocalDateTime,

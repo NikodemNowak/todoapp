@@ -11,6 +11,7 @@ import {makeStyles} from "@material-ui/styles";
 import Button from "@material-ui/core/Button";
 import {Dialog, DialogActions, DialogContent, DialogTitle, TextField} from "@material-ui/core";
 import {DataGrid} from "@material-ui/data-grid";
+import {useHistory} from "react-router";
 
 const useRowStyles = makeStyles({
     root: {
@@ -38,10 +39,11 @@ function Row(props) {
     );
 }
 
-const ProductsTable = (props) => {
+const AllTaskListsTablePage = (props) => {
     const [open, setOpen] = React.useState(false);
     const [taskLists, setTaskLists] = React.useState([]);
     const [taskListToOpen, setTaskListToOpen] = React.useState('');
+    const history = useHistory();
 
     const handleClose = () => {
         setOpen(false);
@@ -57,8 +59,10 @@ const ProductsTable = (props) => {
     }, [])
 
     function onOpenTaskListClick(taskList) {
-        setTaskListToOpen(taskList);
-        setOpen(true);
+        history.push("/taskLists/" + taskList.taskListId);
+        // setTaskListToOpen(taskList);
+        // setOpen(true);
+
     }
 
     return (
@@ -93,4 +97,4 @@ const ProductsTable = (props) => {
     );
 }
 
-export default ProductsTable
+export default AllTaskListsTablePage

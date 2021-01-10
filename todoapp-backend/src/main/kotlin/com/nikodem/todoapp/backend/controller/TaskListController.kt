@@ -1,5 +1,6 @@
 package com.nikodem.todoapp.backend.controller
 
+import com.nikodem.todoapp.backend.dto.DetailedTaskListDTO
 import com.nikodem.todoapp.backend.dto.PatchTaskListDTO
 import com.nikodem.todoapp.backend.dto.PostTaskListDTO
 import com.nikodem.todoapp.backend.dto.TaskListDTO
@@ -19,6 +20,11 @@ class TaskListController(
     @GetMapping
     fun getTaskLists(): ResponseEntity<List<TaskListDTO>>{
         return ok(taskListService.findAll())
+    }
+
+    @GetMapping("/{id}")
+    fun getTaskList(@PathVariable id: Long): ResponseEntity<DetailedTaskListDTO>{
+        return ok(taskListService.getTaskListById(id))
     }
 
     @PostMapping

@@ -23,8 +23,8 @@ class TaskListMapperImpl(
             val taskList = TaskList(name, goal)
 
             tasks.forEach {
-                val task = taskRepository.findByIdAndExpiredIsFalse(it.taskId)
-                        ?: throw Exception("Task with id ${it.taskId} not found")
+                val task = taskRepository.findByIdAndExpiredIsFalse(it.id)
+                        ?: throw Exception("Task with id ${it.id} not found")
 
                 taskList.tasks.add(Task(task.name,
                         task.description,

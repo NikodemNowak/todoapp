@@ -11,7 +11,8 @@ import {
 import {Home, TaskListMenu, UserMenu} from './DropdownMenu'
 import HomePage from "./HomePage";
 import AddTaskListPage from "./AddTaskListPage";
-import TaskListsTablePage from "./TaskListsTablePage";
+import AllTaskListsTablePage from "./AllTaskListsTablePage";
+import TaskListPage from "./TaskListPage";
 
 export const style = {
     margin: 15
@@ -46,8 +47,9 @@ function App() {
                 <Route path="/addTaskList">
                     <AddTaskListPage/>
                 </Route>
-                <Route path="/taskListsTable">
-                    <TaskListsTablePage/>
+                <Route path="/taskLists/:id" children={<TaskListPage />} />
+                <Route path="/taskLists">
+                    <AllTaskListsTablePage/>
                 </Route>
                 <Route path="/">
                     <HomePage/>
