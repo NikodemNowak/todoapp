@@ -10,5 +10,6 @@ data class PostTaskDTO(
         val deadline: LocalDateTime,
         val completed: Boolean = false,
         val endDate: LocalDateTime = LocalDateTime.now(),
-        var status: String
+        var status: String,
+        var taskListId: Long
 )

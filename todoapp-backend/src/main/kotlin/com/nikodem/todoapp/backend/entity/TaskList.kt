@@ -8,6 +8,8 @@ import javax.persistence.OneToMany
 data class TaskList(
         var name: String,
         var goal: String,
-        @OneToMany var tasks: MutableSet<Task> = mutableSetOf(),
         @ManyToMany var users: MutableSet<User> = mutableSetOf()
-) : AbstractEntity()
+) : AbstractEntity() {
+    @OneToMany(mappedBy = "taskList")
+    var tasks: MutableSet<Task> = mutableSetOf()
+}

@@ -44,7 +44,7 @@ class Login extends Component {
                         <br/>
                         <h3>Not registered yet? Register</h3>
                         <RaisedButton label="Register" primary={true} style={style}
-                                      onClick={() => open('http://localhost:3000/registerClient')}/>
+                                      onClick={() => open('http://localhost:3000/register')}/>
                         <br/>
                     </div>
                 </MuiThemeProvider>

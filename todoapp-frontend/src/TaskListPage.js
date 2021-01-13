@@ -46,7 +46,10 @@ const TaskListPage = (props) => {
         tasks: []
     }
     const [taskList, setTaskList] = React.useState(initialTaskList);
-    const [task, setTask] = React.useState('');
+    const [tasks, setTasks] = React.useState([]);
+    const [task, setTask] = React.useState({
+        taskListId: id
+    });
     const [statuses, setStatuses] = React.useState([]);
     const [open, setOpen] = React.useState(false);
     const [edit, setEdit] = React.useState(false);
@@ -64,18 +67,19 @@ const TaskListPage = (props) => {
         setName('Edit task')
     };
 
-    const handleSave = () => {
+    async function handleSave() {
         if (edit === false) {
             addTask(task);
             //taskList.tasks += task
-            updateTaskList(taskList, id);
+            // updateTaskList(taskList, id);
         } else {
             updateTask(task)
         }
         setOpen(false);
         setEdit(false);
-        setName('Add task')
-    };
+        setName('Add task');
+        await fetchTaskList()
+    }
 
     const columns = [
         {field: 'id', headerName: 'ID', width: 70},
@@ -90,21 +94,22 @@ const TaskListPage = (props) => {
         {field: 'status', headerName: 'Status', width: 130},
     ];
 
+    async function fetchTaskList() {
+        let data = await getTaskList(id)
+        setTaskList(data)
+        setTasks(data.tasks);
+
+        console.log(taskList);
+    }
+
+    async function fetchStatuses() {
+        let data = await getStatuses()
+        setStatuses(data)
+
+        console.log(statuses);
+    }
+
     useEffect(() => {
-        async function fetchTaskList() {
-            let data = await getTaskList(id)
-            setTaskList(data)
-
-            console.log(taskList);
-        }
-
-        async function fetchStatuses() {
-            let data = await getStatuses()
-            setStatuses(data)
-
-            console.log(statuses);
-        }
-
         fetchTaskList()
         fetchStatuses()
     }, [])
@@ -113,28 +118,28 @@ const TaskListPage = (props) => {
         setOpen(true);
     }
 
-    if (edit) {
-        return (
-            <Container maxWidth="lg" component="main" className={classes.content}>
-                <div>
-                    <Grid container>
-                        <Grid item xl style={{height: 500, width: 650}}>
-                            <DataGrid rows={taskList.tasks} columns={columns} rowsPerPageOptions={[]}/>
-                        </Grid>
-                        <Grid item xs>
-                            <Button
-                                style={{marginTop: 200, marginLeft: 100}}
-                                variant="contained"
-                                color="primary"
-                                onClick={() => onAddTaskButtonClick()}
-                            >
-                                Add/Edit task
-                            </Button>
-                        </Grid>
+    return (
+        <Container maxWidth="lg" component="main" className={classes.content}>
+            <div>
+                <Grid container>
+                    <Grid item xl style={{height: 500, width: 650}}>
+                        <DataGrid rows={tasks} columns={columns} rowsPerPageOptions={[]}/>
                     </Grid>
-                    <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
-                        <DialogTitle id="form-dialog-title">{name}</DialogTitle>
-                        <DialogContent>
+                    <Grid item xs>
+                        <Button
+                            style={{marginTop: 200, marginLeft: 100}}
+                            variant="contained"
+                            color="primary"
+                            onClick={() => onAddTaskButtonClick()}
+                        >
+                            Add/Edit task
+                        </Button>
+                    </Grid>
+                </Grid>
+                <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
+                    <DialogTitle id="form-dialog-title">{name}</DialogTitle>
+                    <DialogContent>
+                        {edit ?
                             <FormControl>
                                 <InputLabel id="select-id-label">Id</InputLabel>
                                 <Select style={{minWidth: 70}}
@@ -149,154 +154,68 @@ const TaskListPage = (props) => {
                                     {renderOptions1()}
 
                                 </Select>
-                            </FormControl>
+                            </FormControl> : <div/>}
+                        <TextField
+                            autoFocus
+                            margin="dense"
+                            id="name"
+                            label="Name"
+                            onChange={e => setTask({...task, name: e.target.value})}
+                            fullWidth
+                        />
+                        <TextField
+                            autoFocus
+                            margin="dense"
+                            id="description"
+                            label="Description"
+                            onChange={e => setTask({...task, description: e.target.value})}
+                            fullWidth
+                        />
+                        <form noValidate>
                             <TextField
-                                autoFocus
-                                margin="dense"
-                                id="name"
-                                label="Name"
-                                onChange={e => setTask({...task, name: e.target.value})}
-                                fullWidth
+                                id="datetime-local"
+                                label="Deadline"
+                                type="datetime-local"
+                                InputLabelProps={{
+                                    shrink: true,
+                                }}
+
+                                onChange={e => setTask({...task, deadline: e.target.value})}
                             />
-                            <TextField
-                                autoFocus
-                                margin="dense"
-                                id="description"
-                                label="Description"
-                                onChange={e => setTask({...task, description: e.target.value})}
-                                fullWidth
-                            />
-                            <form noValidate>
-                                <TextField
-                                    id="datetime-local"
-                                    label="Deadline"
-                                    type="datetime-local"
-                                    InputLabelProps={{
-                                        shrink: true,
-                                    }}
+                        </form>
+                        <FormControl>
+                            <InputLabel id="select-id-label">Status</InputLabel>
+                            <Select style={{minWidth: 70}}
+                                    labelId="demo-simple-select-helper-label"
+                                    id="demo-simple-select-helper"
+                                    value={task.status}
+                                    onChange={(event, newValue) => setTask({
+                                        ...task,
+                                        status: event.target.value
+                                    })}>
 
-                                    onChange={e => setTask({...task, deadline: e.target.value})}
-                                />
-                            </form>
-                            <FormControl>
-                                <InputLabel id="select-id-label">Status</InputLabel>
-                                <Select style={{minWidth: 70}}
-                                        labelId="demo-simple-select-helper-label"
-                                        id="demo-simple-select-helper"
-                                        value={task.status}
-                                        onChange={(event, newValue) => setTask({
-                                            ...task,
-                                            status: event.target.value
-                                        })}>
+                                {renderOptions()}
 
-                                    {renderOptions()}
+                            </Select>
+                        </FormControl>
+                        <br/>
+                    </DialogContent>
+                    <DialogActions>
+                        <Button onClick={handleEdit} color="primary">
+                            Edit
+                        </Button>
+                        <Button onClick={handleClose} color="primary">
+                            Cancel
+                        </Button>
+                        <Button onClick={handleSave} color="primary">
+                            Save
+                        </Button>
+                    </DialogActions>
+                </Dialog>
+            </div>
 
-                                </Select>
-                            </FormControl>
-                            <br/>
-                        </DialogContent>
-                        <DialogActions>
-                            <Button onClick={handleEdit} color="primary">
-                                Edit
-                            </Button>
-                            <Button onClick={handleClose} color="primary">
-                                Cancel
-                            </Button>
-                            <Button onClick={handleSave} color="primary">
-                                Save
-                            </Button>
-                        </DialogActions>
-                    </Dialog>
-                </div>
-
-            </Container>
-        );
-    } else {
-        return (
-            <Container maxWidth="lg" component="main" className={classes.content}>
-                <div>
-                    <Grid container>
-                        <Grid item xl style={{height: 500, width: 650}}>
-                            <DataGrid rows={taskList.tasks} columns={columns} rowsPerPageOptions={[]}/>
-                        </Grid>
-                        <Grid item xs>
-                            <Button
-                                style={{marginTop: 200, marginLeft: 100}}
-                                variant="contained"
-                                color="primary"
-                                onClick={() => onAddTaskButtonClick()}
-                            >
-                                Add/Edit task
-                            </Button>
-                        </Grid>
-                    </Grid>
-                    <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
-                        <DialogTitle id="form-dialog-title">{name}</DialogTitle>
-                        <DialogContent>
-                            <TextField
-                                autoFocus
-                                margin="dense"
-                                id="name"
-                                label="Name"
-                                onChange={e => setTask({...task, name: e.target.value})}
-                                fullWidth
-                            />
-                            <TextField
-                                autoFocus
-                                margin="dense"
-                                id="description"
-                                label="Description"
-                                onChange={e => setTask({...task, description: e.target.value})}
-                                fullWidth
-                            />
-                            <form noValidate>
-                                <TextField
-                                    id="datetime-local"
-                                    label="Deadline"
-                                    type="datetime-local"
-                                    InputLabelProps={{
-                                        shrink: true,
-                                    }}
-
-                                    onChange={e => setTask({...task, deadline: e.target.value})}
-                                />
-                            </form>
-                            <FormControl>
-                                <InputLabel id="select-id-label">Status</InputLabel>
-                                <Select style={{minWidth: 70}}
-                                        labelId="demo-simple-select-helper-label"
-                                        id="demo-simple-select-helper"
-                                        value={task.status}
-                                        onChange={(event, newValue) => setTask({
-                                            ...task,
-                                            status: event.target.value
-                                        })}>
-
-                                    {renderOptions()}
-
-                                </Select>
-                            </FormControl>
-                            <br/>
-                        </DialogContent>
-                        <DialogActions>
-                            <Button onClick={handleEdit} color="primary">
-                                Edit
-                            </Button>
-                            <Button onClick={handleClose} color="primary">
-                                Cancel
-                            </Button>
-                            <Button onClick={handleSave} color="primary">
-                                Save
-                            </Button>
-                        </DialogActions>
-                    </Dialog>
-                </div>
-
-            </Container>
-        );
-    }
-
-
+        </Container>
+    );
 
     function renderOptions() {
         return statuses.map((dt, i) => {

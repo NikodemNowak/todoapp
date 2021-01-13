@@ -6,6 +6,7 @@ import com.nikodem.todoapp.backend.dto.UserDTO
 import com.nikodem.todoapp.backend.entity.User
 import com.nikodem.todoapp.backend.mapper.UserMapper
 import com.nikodem.todoapp.backend.repositories.UserRepository
+import org.springframework.security.crypto.password.PasswordEncoder
 import org.springframework.stereotype.Service
 import java.lang.Exception
 
@@ -18,14 +19,18 @@ interface UserService {
 @Service
 class UserServiceImpl(
         private val userRepository: UserRepository,
-        private val userMapper: UserMapper
+        private val userMapper: UserMapper,
+        private val passwordEncoder: PasswordEncoder
 ) : UserService {
     override fun findAllNonExpired(): List<UserDTO> {
         return userRepository.findAllByExpiredIsFalse().toDto()
     }
 
     override fun save(postUserDTO: PostUserDTO): UserDTO {
-        return userRepository.save(userMapper.toEntity(postUserDTO)).toDto()
+        val user = userMapper.toEntity(postUserDTO).apply {
+            password = passwordEncoder.encode(password)
+        }
+        return userRepository.save(user).toDto()
     }
 
     override fun update(patchUserDTO: PatchUserDTO): UserDTO {

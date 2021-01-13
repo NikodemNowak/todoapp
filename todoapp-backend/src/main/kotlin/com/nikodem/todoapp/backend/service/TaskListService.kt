@@ -9,7 +9,6 @@ import com.nikodem.todoapp.backend.repositories.TaskListRepository
 import com.nikodem.todoapp.backend.repositories.TaskStatusRepository
 import com.nikodem.todoapp.backend.repositories.UserRepository
 import org.springframework.stereotype.Service
-import java.lang.Exception
 import java.lang.RuntimeException
 
 interface TaskListService {
@@ -36,18 +35,18 @@ class TaskListServiceImpl(
 
     override fun update(patchTaskListDTO: PatchTaskListDTO): DetailedTaskListDTO {
         with(patchTaskListDTO) {
-            val task = taskListRepository.findByIdAndExpiredIsFalse(id)
+            val taskList = taskListRepository.findByIdAndExpiredIsFalse(id)
                     ?: throw RuntimeException("Task list with id $id not found")
 
-            id.apply { task.id = this }
-            name.apply { task.name = this }
-            goal.apply { task.goal = this }
+            id.apply { taskList.id = this }
+            name.apply { taskList.name = this }
+            goal.apply { taskList.goal = this }
 
             val tas = mutableSetOf<Task>()
             tasks.forEach {
                 val stat = taskStatusRepository.findByNameAndExpiredIsFalse(it.status)
                         ?: throw RuntimeException("Status with name ${it.status} not found")
-                tas.add(Task(it.name, it.description, it.deadline,it.completed,it.endDate!!, stat))
+                tas.add(Task(taskList, taskList.name, it.description, it.deadline,it.completed,it.endDate!!, stat))
             }
             val use = mutableSetOf<User>()
             users.forEach {
@@ -56,10 +55,10 @@ class TaskListServiceImpl(
                 use.add(User(u.firstName, u.lastName, u.username, u.password, u.email))
             }
 
-            tas.apply { task.tasks = this }
-            use.apply { task.users = this }
+            tas.apply { taskList.tasks = this }
+            use.apply { taskList.users = this }
 
-            return taskListRepository.save(task).toDetailedDto()
+            return taskListRepository.save(taskList).toDetailedDto()
         }
     }
 

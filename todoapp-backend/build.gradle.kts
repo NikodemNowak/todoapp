@@ -39,6 +39,10 @@ dependencies {
     testImplementation("com.google.truth:truth:1.1")
     testImplementation("com.nhaarman.mockitokotlin2:mockito-kotlin:2.2.0")
 
+    // Security
+    implementation("org.springframework.boot:spring-boot-starter-security")
+    implementation("org.springframework.security:spring-security-test")
+
     // Database
     runtimeOnly("com.h2database:h2")
 }

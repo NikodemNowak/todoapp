@@ -1,7 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="440266f3-c9ff-4b6c-be06-9052bae42098" name="Default Changelist" comment="" />
+    <list default="true" id="440266f3-c9ff-4b6c-be06-9052bae42098" name="Default Changelist" comment="Update">
+      <change afterPath="$PROJECT_DIR$/../todoapp-backend/src/main/kotlin/com/nikodem/todoapp/backend/SecurityConfiguration.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../todoapp-backend/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/../todoapp-backend/build.gradle.kts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../todoapp-backend/src/main/kotlin/com/nikodem/todoapp/backend/DemoDataGenerator.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../todoapp-backend/src/main/kotlin/com/nikodem/todoapp/backend/DemoDataGenerator.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../todoapp-backend/src/main/kotlin/com/nikodem/todoapp/backend/dto/PostTaskDTO.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../todoapp-backend/src/main/kotlin/com/nikodem/todoapp/backend/dto/PostTaskDTO.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../todoapp-backend/src/main/kotlin/com/nikodem/todoapp/backend/entity/Task.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../todoapp-backend/src/main/kotlin/com/nikodem/todoapp/backend/entity/Task.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../todoapp-backend/src/main/kotlin/com/nikodem/todoapp/backend/entity/TaskList.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../todoapp-backend/src/main/kotlin/com/nikodem/todoapp/backend/entity/TaskList.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../todoapp-backend/src/main/kotlin/com/nikodem/todoapp/backend/mapper/TaskListMapper.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../todoapp-backend/src/main/kotlin/com/nikodem/todoapp/backend/mapper/TaskListMapper.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../todoapp-backend/src/main/kotlin/com/nikodem/todoapp/backend/mapper/TaskMapper.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../todoapp-backend/src/main/kotlin/com/nikodem/todoapp/backend/mapper/TaskMapper.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../todoapp-backend/src/main/kotlin/com/nikodem/todoapp/backend/service/TaskListService.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../todoapp-backend/src/main/kotlin/com/nikodem/todoapp/backend/service/TaskListService.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../todoapp-backend/src/main/kotlin/com/nikodem/todoapp/backend/service/UserService.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../todoapp-backend/src/main/kotlin/com/nikodem/todoapp/backend/service/UserService.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.eslintcache" beforeDir="false" afterPath="$PROJECT_DIR$/.eslintcache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ApiRepository.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/ApiRepository.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/LoginPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/LoginPage.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/RegisterPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/RegisterPage.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/TaskListPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/TaskListPage.js" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -71,6 +90,8 @@
       <workItem from="1610265478522" duration="4760000" />
       <workItem from="1610271211877" duration="1803000" />
       <workItem from="1610527069902" duration="13497000" />
+      <workItem from="1610541252232" duration="25000" />
+      <workItem from="1610564528084" duration="5847000" />
     </task>
     <task id="LOCAL-00001" summary="Added base structure">
       <created>1609665389015</created>
@@ -114,7 +135,14 @@
       <option name="project" value="LOCAL" />
       <updated>1610541218824</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="Update">
+      <created>1610541264803</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1610541264803</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

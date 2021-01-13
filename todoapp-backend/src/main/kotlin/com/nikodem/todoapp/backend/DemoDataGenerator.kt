@@ -25,10 +25,10 @@ class DemoDataGenerator(
         val done = taskStatusRepository.save(TaskStatus("DONE"))
         val user = userRepository.save(User("Adam", "Jakistam", "AdamJ", "pass123", "adamk@gmail.com"))
         val user1 = userRepository.save(User("Krzysztof", "Ktostam", "KrzysztofK", "pass321", "krzysztofk@gmail.com"))
-        val task = taskRepository.save(Task("zadanie", "jakis tam opis", LocalDateTime.now(), false, LocalDateTime.now(), toDo))
-        val task1 = taskRepository.save(Task("zadanie1", "jakis tam opis", LocalDateTime.now(), false, LocalDateTime.now(), inProgress))
-        val task2 = taskRepository.save(Task("zadanie2", "opis", LocalDateTime.now(), false, LocalDateTime.now(), done))
-        val taskList = taskListRepository.save(TaskList("lista", "ukonczyc liste", mutableSetOf(task, task2) , mutableSetOf(user1, user)))
-        val taskList1 = taskListRepository.save(TaskList("lista1", "ukonczyc liste", mutableSetOf(task1) , mutableSetOf(user, user1)))
+        val taskList = taskListRepository.save(TaskList("lista", "ukonczyc liste", mutableSetOf(user1, user)))
+        val taskList1 = taskListRepository.save(TaskList("lista1", "ukonczyc liste", mutableSetOf(user, user1)))
+        val task = taskRepository.save(Task(taskList, "zadanie", "jakis tam opis", LocalDateTime.now(), false, LocalDateTime.now(), toDo))
+        val task1 = taskRepository.save(Task(taskList, "zadanie1", "jakis tam opis", LocalDateTime.now(), false, LocalDateTime.now(), inProgress))
+        val task2 = taskRepository.save(Task(taskList, "zadanie2", "opis", LocalDateTime.now(), false, LocalDateTime.now(), done))
     }
 }
