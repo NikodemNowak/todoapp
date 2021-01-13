@@ -39,11 +39,16 @@ function updateTaskList(data, id) {
     instance.patch('/tasks/lists/' + id).then(r => console.log(r))
 }
 
+function addUser(data) {
+    instance.post('/users', data).then(r => console.log(r))
+}
+
 export {
     getTaskLists,
     addTask,
     getTaskList,
     getStatuses,
     updateTask,
-    updateTaskList
+    updateTaskList,
+    addUser
 }
