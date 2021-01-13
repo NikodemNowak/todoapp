@@ -83,7 +83,7 @@ function TaskListMenu() {
                 style={style}
             >
                 <MenuItem onClick={() => open('http://localhost:3000/addTaskList')}>Add</MenuItem>
-                <MenuItem onClick={() => open('http://localhost:3000/taskListsTable')}>Table</MenuItem>
+                <MenuItem onClick={() => open('http://localhost:3000/taskLists')}>Table</MenuItem>
             </Menu>
         </div>
     );

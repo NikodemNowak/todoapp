@@ -27,8 +27,23 @@ function getTaskList(id) {
     return instance.get('/tasks/lists/' + id).then(r => r.data)
 }
 
+function getStatuses() {
+    return instance.get('/tasks/statuses').then(r => r.data)
+}
+
+function updateTask(data) {
+    instance.patch('/tasks', data).then(r => console.log(r))
+}
+
+function updateTaskList(data, id) {
+    instance.patch('/tasks/lists/' + id).then(r => console.log(r))
+}
+
 export {
     getTaskLists,
     addTask,
-    getTaskList
+    getTaskList,
+    getStatuses,
+    updateTask,
+    updateTaskList
 }
