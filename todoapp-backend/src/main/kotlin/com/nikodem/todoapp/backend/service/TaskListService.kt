@@ -15,7 +15,7 @@ import java.lang.RuntimeException
 interface TaskListService {
     fun findAll(): List<TaskListDTO>
     fun save(postTaskListDTO: PostTaskListDTO): TaskListDTO
-    fun update(patchTaskListDTO: PatchTaskListDTO): TaskListDTO
+    fun update(patchTaskListDTO: PatchTaskListDTO): DetailedTaskListDTO
     fun getTaskListById(id: Long): DetailedTaskListDTO
 }
 
@@ -34,16 +34,32 @@ class TaskListServiceImpl(
         return taskListRepository.save(taskListMapper.toEntity(postTaskListDTO)).toDto()
     }
 
-    override fun update(patchTaskListDTO: PatchTaskListDTO): TaskListDTO {
+    override fun update(patchTaskListDTO: PatchTaskListDTO): DetailedTaskListDTO {
         with(patchTaskListDTO) {
             val task = taskListRepository.findByIdAndExpiredIsFalse(id)
-                    ?: throw Exception("Task list with id $id not found")
+                    ?: throw RuntimeException("Task list with id $id not found")
 
             id.apply { task.id = this }
             name.apply { task.name = this }
             goal.apply { task.goal = this }
 
-            return taskListRepository.save(task).toDto()
+            val tas = mutableSetOf<Task>()
+            tasks.forEach {
+                val stat = taskStatusRepository.findByNameAndExpiredIsFalse(it.status)
+                        ?: throw RuntimeException("Status with name ${it.status} not found")
+                tas.add(Task(it.name, it.description, it.deadline,it.completed,it.endDate!!, stat))
+            }
+            val use = mutableSetOf<User>()
+            users.forEach {
+                val u = userRepository.findByIdAndExpiredIsFalse(it.userId)
+                        ?: throw RuntimeException("User with id ${it.userId} not found")
+                use.add(User(u.firstName, u.lastName, u.username, u.password, u.email))
+            }
+
+            tas.apply { task.tasks = this }
+            use.apply { task.users = this }
+
+            return taskListRepository.save(task).toDetailedDto()
         }
     }
 
@@ -59,7 +75,6 @@ fun TaskList.toDetailedDto(): DetailedTaskListDTO {
     val mappedTasks = this.tasks.map { task -> TaskDTO(task.id!!, task.name, task.description, task.deadline, task.completed, task.endDate, task.status.name) }
     return DetailedTaskListDTO(id, name, goal, mappedUsers, mappedTasks)
 }
-
 
 fun TaskList.toDto(): TaskListDTO {
     val user = mutableSetOf<Long>()

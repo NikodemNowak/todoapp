@@ -33,7 +33,7 @@ class TaskListController(
     }
 
     @PatchMapping
-    fun editTaskList(patchTaskListDTO: PatchTaskListDTO): ResponseEntity<TaskListDTO> {
+    fun editTaskList(patchTaskListDTO: PatchTaskListDTO): ResponseEntity<DetailedTaskListDTO> {
         return ResponseEntity(taskListService.update(patchTaskListDTO), HttpStatus.CREATED)
     }
 }

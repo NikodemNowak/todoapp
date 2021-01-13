@@ -8,7 +8,7 @@ import com.nikodem.todoapp.backend.mapper.TaskMapper
 import com.nikodem.todoapp.backend.repositories.TaskRepository
 import com.nikodem.todoapp.backend.repositories.TaskStatusRepository
 import org.springframework.stereotype.Service
-import java.lang.Exception
+import java.lang.RuntimeException
 
 interface TaskService {
     fun findAllNonExpired(): List<TaskDTO>
@@ -32,7 +32,7 @@ class TaskServiceImpl(
 
     override fun update(patchTaskDTO: PatchTaskDTO): TaskDTO {
         with(patchTaskDTO) {
-            val task = taskRepository.findByIdAndExpiredIsFalse(id) ?: throw Exception("Task with id $id not found")
+            val task = taskRepository.findByIdAndExpiredIsFalse(id) ?: throw RuntimeException("Task with id $id not found")
             val stat = taskStatusRepository.findByNameAndExpiredIsFalse(task.status.name)
 
             name.apply { task.name = this }
