@@ -73,7 +73,6 @@ export default function Login(){
                             onChange={e => setUser({...user, password: e.target.value})}
                         />
                         <Button
-                            type="submit"
                             fullWidth
                             variant="contained"
                             color="primary"

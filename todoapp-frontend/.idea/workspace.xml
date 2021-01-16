@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="440266f3-c9ff-4b6c-be06-9052bae42098" name="Default Changelist" comment="">
+    <list default="true" id="440266f3-c9ff-4b6c-be06-9052bae42098" name="Default Changelist" comment="Update">
       <change beforePath="$PROJECT_DIR$/../todoapp-backend/src/main/kotlin/com/nikodem/todoapp/backend/SecurityConfiguration.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../todoapp-backend/src/main/kotlin/com/nikodem/todoapp/backend/SecurityConfiguration.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.eslintcache" beforeDir="false" afterPath="$PROJECT_DIR$/.eslintcache" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/debug.log" beforeDir="false" afterPath="$PROJECT_DIR$/debug.log" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/LoginPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/LoginPage.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/RegisterPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/RegisterPage.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/TaskListPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/TaskListPage.js" afterDir="false" />
@@ -82,7 +81,7 @@
       <workItem from="1610527069902" duration="13497000" />
       <workItem from="1610541252232" duration="25000" />
       <workItem from="1610564528084" duration="6279000" />
-      <workItem from="1610798697934" duration="5111000" />
+      <workItem from="1610798697934" duration="7775000" />
     </task>
     <task id="LOCAL-00001" summary="Added base structure">
       <created>1609665389015</created>
@@ -140,7 +139,14 @@
       <option name="project" value="LOCAL" />
       <updated>1610572012051</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="Update">
+      <created>1610811972836</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1610811972836</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

@@ -205,7 +205,7 @@ const TaskListPage = (props) => {
                         <Button onClick={handleClose} color="primary">
                             Cancel
                         </Button>
-                        <Button onClick={handleSave} color="primary" type="submit">
+                        <Button onClick={handleSave} color="primary">
                             Save
                         </Button>
                     </DialogActions>
