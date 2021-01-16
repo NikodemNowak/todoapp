@@ -70,8 +70,6 @@ const TaskListPage = (props) => {
     async function handleSave() {
         if (edit === false) {
             addTask(task);
-            //taskList.tasks += task
-            // updateTaskList(taskList, id);
         } else {
             updateTask(task)
         }
@@ -207,7 +205,7 @@ const TaskListPage = (props) => {
                         <Button onClick={handleClose} color="primary">
                             Cancel
                         </Button>
-                        <Button onClick={handleSave} color="primary">
+                        <Button onClick={handleSave} color="primary" type="submit">
                             Save
                         </Button>
                     </DialogActions>
