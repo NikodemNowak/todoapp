@@ -45,6 +45,8 @@ dependencies {
 
     // Database
     runtimeOnly("com.h2database:h2")
+
+    implementation("io.jsonwebtoken:jjwt:0.9.1")
 }
 
 tasks.withType<Test> {

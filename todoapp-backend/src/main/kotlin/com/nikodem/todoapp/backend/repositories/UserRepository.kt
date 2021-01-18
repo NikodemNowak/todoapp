@@ -9,4 +9,5 @@ import org.springframework.stereotype.Repository
 interface UserRepository : JpaRepository<User, Long> {
     fun findByIdAndExpiredIsFalse(userId: Long) : User?
     fun findAllByExpiredIsFalse(): List<User>
+    fun findByUsernameAndExpiredIsFalse(username: String): User?
 }
