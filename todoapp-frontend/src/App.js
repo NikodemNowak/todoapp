@@ -8,11 +8,12 @@ import {
     Switch,
     Route
 } from "react-router-dom";
-import {Home, TaskListMenu, UserMenu} from './DropdownMenu'
+import {ChangeTheme, Home, TaskListMenu, UserMenu} from './DropdownMenu'
 import HomePage from "./HomePage";
 import AddTaskListPage from "./AddTaskListPage";
 import AllTaskListsTablePage from "./AllTaskListsTablePage";
 import TaskListPage from "./TaskListPage";
+import UserPanel from "./UserPanelPage";
 
 export const style = {
     margin: 15
@@ -29,6 +30,7 @@ function App() {
                 <div>
                     <MuiThemeProvider>
                         <AppBar showMenuIconButton={false} style={appbar}>
+                            <ChangeTheme/>
                             <Home/>
                             <UserMenu/>
                             <TaskListMenu/>
@@ -43,6 +45,9 @@ function App() {
                 </Route>
                 <Route path="/register">
                     <Register/>
+                </Route>
+                <Route path="/panel">
+                    <UserPanel/>
                 </Route>
                 <Route path="/addTaskList">
                     <AddTaskListPage/>

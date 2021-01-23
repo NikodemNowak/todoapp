@@ -1,6 +1,6 @@
 import React, {useEffect} from 'react';
 import {useParams} from "react-router";
-import {addTask, getStatuses, getTaskList, updateTask, updateTaskList} from "./ApiRepository";
+import {addTask, getStatuses, getTaskList, updateTask} from "./ApiRepository";
 import {DataGrid} from "@material-ui/data-grid";
 import {
     Container,
@@ -77,6 +77,7 @@ const TaskListPage = (props) => {
         setEdit(false);
         setName('Add task');
         await fetchTaskList()
+        window.location.reload(false);
     }
 
     const columns = [

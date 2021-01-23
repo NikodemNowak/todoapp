@@ -47,8 +47,10 @@ const Register = () => {
         console.log(registerData);
 
         // check passwords
+        registerData.password === registerData.password2 ? console.log("hasla takie same") : console.log("hasla rozne")
 
         addUser(registerData);
+
     }
 
     function onSnackbarClose() {
@@ -72,28 +74,6 @@ const Register = () => {
                     </Typography>
                     <form className={classes.form} onSubmit={handleSubmit(submitRegistrationFrom)}>
                         <FormControl fullWidth variant="outlined">
-                            {/*<Controller*/}
-                            {/*    name="firstName"*/}
-                            {/*    as={*/}
-                            {/*        <TextField*/}
-                            {/*            autoFocus*/}
-                            {/*            autoComplete="fname"*/}
-                            {/*            name="firstName"*/}
-                            {/*            variant="outlined"*/}
-                            {/*            fullWidth*/}
-                            {/*            id="firstName"*/}
-                            {/*            helperText={fieldsErrors.firstName ? fieldsErrors.firstName.message : null}*/}
-                            {/*            label="First Name"*/}
-                            {/*            error={fieldsErrors.firstName}*/}
-                            {/*        />*/}
-                            {/*    }*/}
-                            {/*    control={control}*/}
-                            {/*    defaultValue=""*/}
-                            {/*    rules={{*/}
-                            {/*        required: true,*/}
-                            {/*    }}*/}
-                            {/*/>*/}
-
                             <Grid container spacing={2}>
                                 <Grid item xs={12} sm={6}>
                                     <Controller
@@ -114,7 +94,7 @@ const Register = () => {
                                         control={control}
                                         defaultValue=""
                                         rules={{
-                                            required: true,
+                                            required: "You must specify first name",
                                         }}
                                     />
                                 </Grid>
@@ -136,7 +116,7 @@ const Register = () => {
                                     control={control}
                                     defaultValue=""
                                     rules={{
-                                        required: true,
+                                        required: "You must specify last name",
                                     }}
                                 />
                             </Grid>
@@ -158,7 +138,11 @@ const Register = () => {
                                     control={control}
                                     defaultValue=""
                                     rules={{
-                                        required: true,
+                                        required: "You must specify email",
+                                        pattern: {
+                                            value: /^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/i,
+                                            message: "password pattern example@gmail.com"
+                                        }
                                     }}
                                 />
                             </Grid>
@@ -180,7 +164,11 @@ const Register = () => {
                                     control={control}
                                     defaultValue=""
                                     rules={{
-                                        required: true,
+                                        required: "You must specify username",
+                                        minLength: {
+                                            value: 3,
+                                            message: "min 3 marks"
+                                        }
                                     }}
                                 />
                             </Grid>
@@ -230,7 +218,11 @@ const Register = () => {
                                     control={control}
                                     defaultValue=""
                                     rules={{
-                                        required: true,
+                                        required: "You must specify a password",
+                                        minLength: {
+                                            value: 8,
+                                            message: "Password must have at least 8 characters"
+                                        }
                                     }}
                                 />
                             </Grid>
@@ -268,12 +260,13 @@ const Register = () => {
                             flexFlow: 'column',
                             alignItems: 'center'
                         }}>
-                            { JSON.stringify(fieldsErrors) }
+                            Correct incorrect fields
                         </div>
                     </Alert>
                 </Snackbar>
                 : null
             }
+
         </div>
     );
 }

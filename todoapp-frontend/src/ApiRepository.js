@@ -43,6 +43,10 @@ function addUser(data) {
     instance.post('/users', data).then(r => console.log(r))
 }
 
+function getUsers() {
+    return instance.get('/users').then(r => r.data)
+}
+
 export {
     getTaskLists,
     addTask,
@@ -50,5 +54,6 @@ export {
     getStatuses,
     updateTask,
     updateTaskList,
-    addUser
+    addUser,
+    getUsers
 }

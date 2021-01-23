@@ -7,8 +7,10 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import {makeStyles} from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
-import {render} from "@testing-library/react";
-import {Grid, Link} from "@material-ui/core";
+import {Grid, Link, Snackbar} from "@material-ui/core";
+import MuiAlert from "@material-ui/lab/Alert";
+import {addUser} from "./ApiRepository";
+import {Controller, useForm} from "react-hook-form";
 
 const useStyles = makeStyles((theme) => ({
     paper: {
@@ -30,14 +32,29 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-export default function Login(){
-    const classes = useStyles();
-    const [user, setUser] = useState({
-        username: '',
-        password: ''
-    })
+function Alert(props) {
+    return <MuiAlert elevation={6} variant="filled" {...props} />;
+}
 
-        return (
+const Login = () => {
+    const classes = useStyles();
+    const [snackbarOpen, setSnackbarOpen] = useState(false);
+    const {control, handleSubmit, errors: fieldsErrors} = useForm();
+
+    const submitLoginForm = (loginData) => {
+        console.log(loginData);
+    }
+
+    function onSnackbarClose() {
+        setSnackbarOpen(false);
+    }
+
+    React.useEffect(() => {
+        setSnackbarOpen(true)
+    }, [fieldsErrors])
+
+    return (
+        <div>
             <Container component="main" maxWidth="xs">
                 <CssBaseline/>
                 <div className={classes.paper}>
@@ -47,40 +64,67 @@ export default function Login(){
                     <Typography component="h1" variant="h5">
                         Login
                     </Typography>
-                    <form className={classes.form} noValidate>
-                        <TextField
-                            variant="outlined"
-                            margin="normal"
-                            required
-                            fullWidth
-                            id="username"
-                            label="Username"
-                            name="username"
-                            autoComplete="username"
-                            autoFocus
-                            onChange={e => setUser({...user, username: e.target.value})}
-                        />
-                        <TextField
-                            variant="outlined"
-                            margin="normal"
-                            required
-                            fullWidth
-                            name="password"
-                            label="Password"
-                            type="password"
-                            id="password"
-                            autoComplete="current-password"
-                            onChange={e => setUser({...user, password: e.target.value})}
-                        />
-                        <Button
-                            fullWidth
-                            variant="contained"
-                            color="primary"
-                            className={classes.submit}
-                            onClick={(event) => onSubmitButtonClick(event)}
-                        >
-                            Login
-                        </Button>
+                    <form className={classes.form} onSubmit={handleSubmit(submitLoginForm)}>
+                        <Grid container spacing={2}>
+                            <Grid item xs={12}>
+                                <Controller
+                                    name="username"
+                                    as={
+                                        <TextField
+                                            variant="outlined"
+                                            fullWidth
+                                            id="username"
+                                            label="Username"
+                                            name="username"
+                                            autoComplete="username"
+                                            helperText={fieldsErrors.username ? fieldsErrors.username.message : null}
+                                            error={fieldsErrors.username}
+                                        />
+                                    }
+                                    control={control}
+                                    defaultValue=""
+                                    rules={{
+                                        required: "You must specify username",
+                                    }}
+                                />
+                            </Grid>
+                            <Grid item xs={12}>
+                                <Controller
+                                    name="password"
+                                    as={
+                                        <TextField
+                                            variant="outlined"
+                                            fullWidth
+                                            name="password"
+                                            label="Password"
+                                            type="password"
+                                            id="password"
+                                            autoComplete="current-password"
+                                            helperText={fieldsErrors.password ? fieldsErrors.password.message : null}
+                                            error={fieldsErrors.password}
+                                        />
+                                    }
+                                    control={control}
+                                    defaultValue=""
+                                    rules={{
+                                        required: "You must specify a password",
+                                        minLength: {
+                                            value: 8,
+                                            message: "Password must have at least 8 characters"
+                                        }
+                                    }}
+                                />
+                            </Grid>
+                            <Button
+                                fullWidth
+                                variant="contained"
+                                color="primary"
+                                className={classes.submit}
+                                type="submit"
+                            >
+                                Login
+                            </Button>
+                        </Grid>
                     </form>
                     <Grid container justify="center">
                         <Grid item>
@@ -91,10 +135,31 @@ export default function Login(){
                     </Grid>
                 </div>
             </Container>
-        );
 
-    function onSubmitButtonClick(event)
-    {
+            {JSON.stringify(fieldsErrors).length > 2
+                ? <Snackbar
+                    open={snackbarOpen}
+                    onClose={onSnackbarClose}
+                    autoHideDuration={3000}
+                >
+                    <Alert severity="error">
+                        <div style={{
+                            display: 'flex',
+                            flexFlow: 'column',
+                            alignItems: 'center'
+                        }}>
+                            Correct incorrect fields
+                        </div>
+                    </Alert>
+                </Snackbar>
+                : null
+            }
+
+        </div>
+    );
+
+    function onSubmitButtonClick(event) {
         console.log(user)
     }
 }
+export default Login

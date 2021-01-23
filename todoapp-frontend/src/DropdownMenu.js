@@ -5,6 +5,8 @@ import MenuItem from '@material-ui/core/MenuItem';
 import HomeIcon from '@material-ui/icons/Home';
 import PersonIcon from '@material-ui/icons/Person';
 import ListIcon from '@material-ui/icons/List';
+import Brightness5Icon from '@material-ui/icons/Brightness5';
+import Brightness3Icon from '@material-ui/icons/Brightness3';
 
 const open = (url) => {
     const newWindow = window.open(url, "_self")
@@ -23,6 +25,29 @@ function Home() {
             </Button>
         </div>
     );
+}
+
+function ChangeTheme() {
+    const [dark, setDark] = React.useState(false);
+    const [icon, setIcon] = React.useState(<Brightness5Icon/>);
+
+    const handleClick = (event) => {
+        if (dark) {
+            setDark(false)
+            setIcon(<Brightness5Icon/>)
+        } else {
+            setDark(true)
+            setIcon(<Brightness3Icon/>)
+        }
+    };
+
+    return (
+        <div>
+            <Button aria-controls="simple-menu" aria-haspopup="true" onClick={handleClick}>
+                {icon}
+            </Button>
+        </div>
+    )
 }
 
 function UserMenu() {
@@ -52,6 +77,7 @@ function UserMenu() {
             >
                 <MenuItem onClick={() => open('http://localhost:3000/login')}>Login</MenuItem>
                 <MenuItem onClick={() => open('http://localhost:3000/register')}>Register</MenuItem>
+                <MenuItem onClick={() => open('http://localhost:3000/panel')}>Panel</MenuItem>
             </Menu>
         </div>
     );
@@ -89,4 +115,4 @@ function TaskListMenu() {
     );
 }
 
-export {Home, UserMenu, TaskListMenu}
+export {Home, UserMenu, TaskListMenu, ChangeTheme}
