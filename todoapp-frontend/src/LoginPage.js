@@ -9,7 +9,7 @@ import {makeStyles} from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import {Grid, Link, Snackbar} from "@material-ui/core";
 import MuiAlert from "@material-ui/lab/Alert";
-import {addUser} from "./ApiRepository";
+import {addUser, loginUser} from "./ApiRepository";
 import {Controller, useForm} from "react-hook-form";
 
 const useStyles = makeStyles((theme) => ({
@@ -42,7 +42,7 @@ const Login = () => {
     const {control, handleSubmit, errors: fieldsErrors} = useForm();
 
     const submitLoginForm = (loginData) => {
-        console.log(loginData);
+        loginUser(loginData)
     }
 
     function onSnackbarClose() {
@@ -158,8 +158,5 @@ const Login = () => {
         </div>
     );
 
-    function onSubmitButtonClick(event) {
-        console.log(user)
-    }
 }
 export default Login

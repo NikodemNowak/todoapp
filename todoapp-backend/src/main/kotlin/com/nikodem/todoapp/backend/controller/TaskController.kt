@@ -3,6 +3,7 @@ package com.nikodem.todoapp.backend.controller
 import com.nikodem.todoapp.backend.dto.PatchTaskDTO
 import com.nikodem.todoapp.backend.dto.PostTaskDTO
 import com.nikodem.todoapp.backend.dto.TaskDTO
+import com.nikodem.todoapp.backend.security.IsAuthenticated
 import com.nikodem.todoapp.backend.service.TaskService
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
@@ -17,6 +18,7 @@ class TaskController(
         private val taskService: TaskService
 ) {
     @GetMapping
+    @IsAuthenticated
     fun getTasks(): ResponseEntity<List<TaskDTO>> {
         return ok(taskService.findAllNonExpired())
     }

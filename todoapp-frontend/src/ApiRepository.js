@@ -6,6 +6,11 @@ const instance = axios.create({
 })
 
 instance.interceptors.request.use(request => {
+    const token = localStorage.getItem("accessToken")
+    if (token != null) {
+        request.headers = {'Authorization': 'Bearer ' + token, 'Content-Type': 'application/json'}
+    }
+
     console.log('Starting Request', JSON.stringify(request, null, 2))
     return request
 })
@@ -47,6 +52,13 @@ function getUsers() {
     return instance.get('/users').then(r => r.data)
 }
 
+function loginUser(data) {
+    instance.post('/login', data).then(r => {
+        localStorage.setItem("accessToken", r.data.accessToken)
+        localStorage.setItem("refreshToken", r.data.refreshToken)
+    })
+}
+
 export {
     getTaskLists,
     addTask,
@@ -55,5 +67,6 @@ export {
     updateTask,
     updateTaskList,
     addUser,
-    getUsers
+    getUsers,
+    loginUser
 }

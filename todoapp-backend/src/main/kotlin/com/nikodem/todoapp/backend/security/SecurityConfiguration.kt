@@ -2,6 +2,7 @@ package com.nikodem.todoapp.backend.security
 
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
+import org.springframework.security.authentication.AuthenticationManager
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder
 import org.springframework.security.config.annotation.web.builders.HttpSecurity
 import org.springframework.security.config.annotation.web.builders.WebSecurity
@@ -14,8 +15,15 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 
 @Configuration
 class SecurityConfiguration(
-        private val userDetailsService: UserDetailsService
+        private val userDetailsService: UserDetailsService,
+        private val jwtTokenManager: JwtTokenManager
 ) : WebSecurityConfigurerAdapter() {
+
+    @Bean
+    @Throws(Exception::class)
+    override fun authenticationManagerBean(): AuthenticationManager {
+        return super.authenticationManagerBean()
+    }
 
     @Bean
     fun passwordEncoder(): PasswordEncoder {
@@ -38,6 +46,6 @@ class SecurityConfiguration(
                 .authorizeRequests()
                 .antMatchers("/**").permitAll()
                 .and()
-                .addFilterBefore(JwtTokenFilter(), UsernamePasswordAuthenticationFilter::class.java)
+                .addFilterBefore(JwtTokenFilter(jwtTokenManager, userDetailsService), UsernamePasswordAuthenticationFilter::class.java)
     }
 }

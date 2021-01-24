@@ -2,6 +2,7 @@ package com.nikodem.todoapp.backend.service
 
 import com.nikodem.todoapp.backend.dto.PatchUserDTO
 import com.nikodem.todoapp.backend.dto.PostUserDTO
+import com.nikodem.todoapp.backend.dto.ResetPasswordDTO
 import com.nikodem.todoapp.backend.dto.UserDTO
 import com.nikodem.todoapp.backend.entity.User
 import com.nikodem.todoapp.backend.mapper.UserMapper
@@ -9,11 +10,13 @@ import com.nikodem.todoapp.backend.repositories.UserRepository
 import org.springframework.security.crypto.password.PasswordEncoder
 import org.springframework.stereotype.Service
 import java.lang.Exception
+import java.lang.RuntimeException
 
 interface UserService {
     fun findAllNonExpired(): List<UserDTO>
     fun save(postUserDTO: PostUserDTO): UserDTO
     fun update(patchUserDTO: PatchUserDTO): UserDTO
+    fun resetPassword(username: String, resetPasswordDTO: ResetPasswordDTO)
 }
 
 @Service
@@ -45,6 +48,13 @@ class UserServiceImpl(
 
             return userRepository.save(user).toDto()
         }
+    }
+
+    override fun resetPassword(username: String, resetPasswordDTO: ResetPasswordDTO) {
+        val user = userRepository.findByUsernameAndExpiredIsFalse(username) ?: throw RuntimeException()
+        passwordEncoder.matches(resetPasswordDTO.oldPassword, user.password)
+        user.password = passwordEncoder.encode(resetPasswordDTO.newPassword)
+        userRepository.save(user)
     }
 }
 

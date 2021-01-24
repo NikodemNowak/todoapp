@@ -78,6 +78,7 @@ function UserMenu() {
                 <MenuItem onClick={() => open('http://localhost:3000/login')}>Login</MenuItem>
                 <MenuItem onClick={() => open('http://localhost:3000/register')}>Register</MenuItem>
                 <MenuItem onClick={() => open('http://localhost:3000/panel')}>Panel</MenuItem>
+                <MenuItem onClick={() => localStorage.clear()}>Log out</MenuItem>
             </Menu>
         </div>
     );

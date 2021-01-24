@@ -19,7 +19,7 @@ class JwtTokenManager {
         return Jwts.builder().apply {
             setSubject(username)
             setIssuedAt(now)
-            //setExpiration(Date(now + (5 * 60000)))
+            setExpiration(Date(now.time + (5 * 60000)))
             signWith(SignatureAlgorithm.HS256, SECRET_KEY)
         }.compact()
     }
@@ -33,6 +33,16 @@ class JwtTokenManager {
             //setExpiration(Date(now + (60000 * 60 * 24)))
             signWith(SignatureAlgorithm.HS256, SECRET_KEY)
         }.compact()
+    }
+
+    fun isTokenValid(token: String): Boolean {
+        val claims = Jwts.parser().setSigningKey(SECRET_KEY).parseClaimsJws(token)
+        return claims.body.expiration.after(Date())
+    }
+
+    fun getUsername(token: String): String {
+        val claims = Jwts.parser().setSigningKey(SECRET_KEY).parseClaimsJws(token)
+        return claims.body.subject
     }
 
     companion object {

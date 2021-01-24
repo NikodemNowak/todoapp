@@ -41,16 +41,23 @@ function Alert(props) {
 const Register = () => {
     const classes = useStyles();
     const [snackbarOpen, setSnackbarOpen] = useState(false);
+    const [severity, setSeverity] = useState('success');
+    const [message, setMessage] = useState('');
     const { control, handleSubmit, errors: fieldsErrors } = useForm();
 
     const submitRegistrationFrom = (registerData) => {
         console.log(registerData);
 
         // check passwords
-        registerData.password === registerData.password2 ? console.log("hasla takie same") : console.log("hasla rozne")
-
-        addUser(registerData);
-
+        if (registerData.password === registerData.password2) {
+            addUser(registerData);
+            setSeverity('success')
+            setMessage("Registration completed")
+        } else {
+            setSeverity('error')
+            setMessage("Passwords don't match ")
+        }
+        setSnackbarOpen(true);
     }
 
     function onSnackbarClose() {
@@ -58,8 +65,8 @@ const Register = () => {
     }
 
     React.useEffect(() => {
-        setSnackbarOpen(true)
-    }, [fieldsErrors])
+
+    }, [])
 
     return (
         <div>
@@ -248,24 +255,21 @@ const Register = () => {
                 </div>
             </Container>
 
-            {JSON.stringify(fieldsErrors).length > 2
-                ? <Snackbar
-                    open={snackbarOpen}
-                    onClose={onSnackbarClose}
-                    autoHideDuration={3000}
-                >
-                    <Alert severity="error">
-                        <div style={{
-                            display: 'flex',
-                            flexFlow: 'column',
-                            alignItems: 'center'
-                        }}>
-                            Correct incorrect fields
-                        </div>
-                    </Alert>
-                </Snackbar>
-                : null
-            }
+            <Snackbar
+                open={snackbarOpen}
+                onClose={onSnackbarClose}
+                autoHideDuration={3000}
+            >
+                <Alert severity={severity}>
+                    <div style={{
+                        display: 'flex',
+                        flexFlow: 'column',
+                        alignItems: 'center'
+                    }}>
+                        {message}
+                    </div>
+                </Alert>
+            </Snackbar>
 
         </div>
     );

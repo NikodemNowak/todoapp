@@ -1,17 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="440266f3-c9ff-4b6c-be06-9052bae42098" name="Default Changelist" comment="Update">
-      <change afterPath="$PROJECT_DIR$/src/UserPanelPage.js" afterDir="false" />
+    <list default="true" id="440266f3-c9ff-4b6c-be06-9052bae42098" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/../todoapp-backend/src/main/kotlin/com/nikodem/todoapp/backend/controller/AuthController.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../todoapp-backend/src/main/kotlin/com/nikodem/todoapp/backend/dto/LoginDTO.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../todoapp-backend/src/main/kotlin/com/nikodem/todoapp/backend/dto/TokenDTO.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../todoapp-backend/src/main/kotlin/com/nikodem/todoapp/backend/security/IsAuthenticated.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../todoapp-backend/src/main/kotlin/com/nikodem/todoapp/backend/security/MethodSecurityConfig.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../todoapp-backend/src/main/kotlin/com/nikodem/todoapp/backend/DemoDataGenerator.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../todoapp-backend/src/main/kotlin/com/nikodem/todoapp/backend/DemoDataGenerator.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../todoapp-backend/src/main/kotlin/com/nikodem/todoapp/backend/controller/TaskController.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../todoapp-backend/src/main/kotlin/com/nikodem/todoapp/backend/controller/TaskController.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../todoapp-backend/src/main/kotlin/com/nikodem/todoapp/backend/security/JwtTokenFilter.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../todoapp-backend/src/main/kotlin/com/nikodem/todoapp/backend/security/JwtTokenFilter.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../todoapp-backend/src/main/kotlin/com/nikodem/todoapp/backend/security/JwtTokenManager.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../todoapp-backend/src/main/kotlin/com/nikodem/todoapp/backend/security/JwtTokenManager.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../todoapp-backend/src/main/kotlin/com/nikodem/todoapp/backend/security/SecurityConfiguration.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../todoapp-backend/src/main/kotlin/com/nikodem/todoapp/backend/security/SecurityConfiguration.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.eslintcache" beforeDir="false" afterPath="$PROJECT_DIR$/.eslintcache" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/ApiRepository.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/ApiRepository.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/DropdownMenu.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/DropdownMenu.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/LoginPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/LoginPage.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/RegisterPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/RegisterPage.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/TaskListPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/TaskListPage.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -87,7 +93,8 @@
       <workItem from="1610564528084" duration="6279000" />
       <workItem from="1610798697934" duration="7775000" />
       <workItem from="1610977926031" duration="5942000" />
-      <workItem from="1611402769047" duration="19115000" />
+      <workItem from="1611402769047" duration="19136000" />
+      <workItem from="1611471756259" duration="2576000" />
     </task>
     <task id="LOCAL-00001" summary="Added base structure">
       <created>1609665389015</created>
@@ -159,7 +166,14 @@
       <option name="project" value="LOCAL" />
       <updated>1610989532385</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="Update">
+      <created>1611437528372</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1611437528372</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
