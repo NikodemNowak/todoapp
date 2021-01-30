@@ -24,6 +24,7 @@ class TaskListController(
         return ok(taskListService.findAll())
     }
 
+    @IsAuthenticated
     @GetMapping("/{id}")
     fun getTaskList(@PathVariable id: Long): ResponseEntity<DetailedTaskListDTO>{
         return ok(taskListService.getTaskListById(id))

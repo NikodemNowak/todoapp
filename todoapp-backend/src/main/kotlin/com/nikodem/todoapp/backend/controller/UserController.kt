@@ -1,9 +1,6 @@
 package com.nikodem.todoapp.backend.controller
 
-import com.nikodem.todoapp.backend.dto.PatchUserDTO
-import com.nikodem.todoapp.backend.dto.PostUserDTO
-import com.nikodem.todoapp.backend.dto.ResetPasswordDTO
-import com.nikodem.todoapp.backend.dto.UserDTO
+import com.nikodem.todoapp.backend.dto.*
 import com.nikodem.todoapp.backend.service.UserService
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
@@ -25,6 +22,11 @@ class UserController(
         return ok(userService.findAllNonExpired())
     }
 
+    @GetMapping("/username")
+    fun getName(): String {
+        return getUsername()!!
+    }
+
     @PostMapping
     fun addUser(@Valid @RequestBody postUserDTO: PostUserDTO): ResponseEntity<UserDTO> {
         return ResponseEntity(userService.save(postUserDTO), HttpStatus.CREATED)
@@ -36,9 +38,16 @@ class UserController(
         return "Reset password success"
     }
 
-    @PatchMapping
-    fun editUser(patchUserDTO: PatchUserDTO): ResponseEntity<UserDTO> {
-        return ResponseEntity(userService.update(patchUserDTO), HttpStatus.CREATED)
+    @PostMapping("/change-data")
+    fun changeData(@RequestBody changeDataDTO: ChangeDataDTO): String {
+        userService.changeData(getUsername()!!, changeDataDTO)
+        return "Change data success"
+    }
+
+    @DeleteMapping
+    fun deleteUser(): ResponseEntity<String> {
+        userService.setUserExpired(getUsername()!!)
+        return ResponseEntity("User deleted", HttpStatus.OK)
     }
 
     private fun getUsername(): String? {

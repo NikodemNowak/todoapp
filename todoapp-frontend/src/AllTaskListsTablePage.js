@@ -1,5 +1,5 @@
 import React, {useEffect} from 'react';
-import {addTask, getTaskLists} from "./ApiRepository";
+import {getTaskLists} from "./ApiRepository";
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
@@ -9,8 +9,7 @@ import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import {makeStyles} from "@material-ui/styles";
 import Button from "@material-ui/core/Button";
-import {Dialog, DialogActions, DialogContent, DialogTitle, TextField} from "@material-ui/core";
-import {DataGrid} from "@material-ui/data-grid";
+import {Dialog, DialogActions, DialogContent, DialogTitle} from "@material-ui/core";
 import {useHistory} from "react-router";
 
 const useRowStyles = makeStyles({

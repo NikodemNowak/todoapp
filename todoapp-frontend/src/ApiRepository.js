@@ -56,7 +56,24 @@ function loginUser(data) {
     instance.post('/login', data).then(r => {
         localStorage.setItem("accessToken", r.data.accessToken)
         localStorage.setItem("refreshToken", r.data.refreshToken)
+        console.log(r)
     })
+}
+
+function resetPassword(data) {
+    instance.post('/users/reset-password', data).then(r => console.log(r))
+}
+
+function changeData(data) {
+    instance.post('/users/change-data', data).then(r => console.log(r))
+}
+
+function deleteUser() {
+    instance.delete('/users').then(r => console.log(r))
+}
+
+function getUsername() {
+    return instance.get('/users/username').then(r => r.data)
 }
 
 export {
@@ -68,5 +85,9 @@ export {
     updateTaskList,
     addUser,
     getUsers,
-    loginUser
+    loginUser,
+    resetPassword,
+    changeData,
+    deleteUser,
+    getUsername
 }

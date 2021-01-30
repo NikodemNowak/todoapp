@@ -15,8 +15,7 @@ import {
     DialogTitle, FormControl, Snackbar,
     TextField
 } from "@material-ui/core";
-import {RaisedButton} from "material-ui";
-import {style} from "./AddTaskListPage";
+import {changeData, deleteUser, resetPassword} from "./ApiRepository";
 
 function Alert(props) {
     return <MuiAlert elevation={6} variant="filled" {...props} />;
@@ -55,6 +54,7 @@ const UserPanel = () => {
     const [openPasswords, setOpenPasswords] = useState(false);
     const [openDeleteAccounts, setOpenDeleteAccounts] = useState(false);
     const [snackbarOpen, setSnackbarOpen] = useState(false);
+    const [passwordSnackbarOpen, setPasswordSnackbarOpen] = useState(false);
 
     const handleCloseChangeData = () => {
         setOpenChangeData(false);
@@ -71,16 +71,21 @@ const UserPanel = () => {
     const handleSaveChangeData = (data) => {
         setOpenChangeData(false);
         console.log(data)
+        changeData(data)
     }
 
     const handleSavePasswords = (data) => {
-        setOpenPasswords(false);
-        console.log(data)
+        if (data.newPassword === data.newPassword2){
+            resetPassword(data)
+            setOpenPasswords(false)
+        } else {
+            setPasswordSnackbarOpen(true)
+        }
     }
 
     function handleDeleteAccount() {
         setOpenDeleteAccounts(false);
-        console.log("Deleted")
+        deleteUser()
     }
 
     const handleOpenChangeData = () => {
@@ -97,6 +102,10 @@ const UserPanel = () => {
 
     function onSnackbarClose() {
         setSnackbarOpen(false);
+    }
+
+    function onPasswordSnackbarClose() {
+        setPasswordSnackbarOpen(false);
     }
 
     React.useEffect(() => {
@@ -266,18 +275,18 @@ const UserPanel = () => {
                                                 <Grid container spacing={2}>
                                                     <Grid item xs={12}>
                                                         <Controller
-                                                            name="password"
+                                                            name="oldPassword"
                                                             as={
                                                                 <TextField
                                                                     variant="outlined"
                                                                     fullWidth
-                                                                    name="password"
+                                                                    name="oldPassword"
                                                                     label="Password"
                                                                     type="password"
-                                                                    id="password"
+                                                                    id="oldPassword"
                                                                     autoComplete="current-password"
-                                                                    helperText={fieldsErrors.password ? fieldsErrors.password.message : null}
-                                                                    error={fieldsErrors.password}
+                                                                    helperText={fieldsErrors.oldPassword ? fieldsErrors.oldPassword.message : null}
+                                                                    error={fieldsErrors.oldPassword}
                                                                 />
                                                             }
                                                             control={control}
@@ -406,6 +415,22 @@ const UserPanel = () => {
                 </Snackbar>
                 : null
             }
+
+            <Snackbar
+                open={passwordSnackbarOpen}
+                onClose={onPasswordSnackbarClose}
+                autoHideDuration={3000}
+            >
+                <Alert severity="error">
+                    <div style={{
+                        display: 'flex',
+                        flexFlow: 'column',
+                        alignItems: 'center'
+                    }}>
+                        Password don't match
+                    </div>
+                </Alert>
+            </Snackbar>
 
         </div>
     );

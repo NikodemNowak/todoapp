@@ -8,7 +8,7 @@ import {
     Switch,
     Route
 } from "react-router-dom";
-import {ChangeTheme, Home, TaskListMenu, UserMenu} from './DropdownMenu'
+import {ChangeTheme, Home, TaskListMenu, UserMenu, Welcome} from './DropdownMenu'
 import HomePage from "./HomePage";
 import AddTaskListPage from "./AddTaskListPage";
 import AllTaskListsTablePage from "./AllTaskListsTablePage";
@@ -30,6 +30,7 @@ function App() {
                 <div>
                     <MuiThemeProvider>
                         <AppBar showMenuIconButton={false} style={appbar}>
+                            <Welcome/>
                             <ChangeTheme/>
                             <Home/>
                             <UserMenu/>
@@ -41,23 +42,23 @@ function App() {
 
             <Switch>
                 <Route path="/login">
-                    <Login/>
+                    {localStorage.length === 0 ? <Login/> : <div/>}
                 </Route>
                 <Route path="/register">
-                    <Register/>
+                    {localStorage.length === 0 ? <Register/> : <div/>}
                 </Route>
                 <Route path="/panel">
-                    <UserPanel/>
+                    {localStorage.length > 0 ? <UserPanel/> : <div/>}
                 </Route>
                 <Route path="/addTaskList">
-                    <AddTaskListPage/>
+                    {localStorage.length > 0 ? <AddTaskListPage/> : <div/>}
                 </Route>
-                <Route path="/taskLists/:id" children={<TaskListPage />} />
+                <Route path="/taskLists/:id" children={<TaskListPage/>}/>
                 <Route path="/taskLists">
-                    <AllTaskListsTablePage/>
+                    {localStorage.length > 0 ? <AllTaskListsTablePage/> : <div/>}
                 </Route>
                 <Route path="/">
-                    <HomePage/>
+                    {localStorage.length > 0 ? <HomePage/> : <div/>}
                 </Route>
             </Switch>
         </Router>

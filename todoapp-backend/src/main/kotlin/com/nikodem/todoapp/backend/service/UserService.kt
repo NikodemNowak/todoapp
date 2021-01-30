@@ -1,9 +1,6 @@
 package com.nikodem.todoapp.backend.service
 
-import com.nikodem.todoapp.backend.dto.PatchUserDTO
-import com.nikodem.todoapp.backend.dto.PostUserDTO
-import com.nikodem.todoapp.backend.dto.ResetPasswordDTO
-import com.nikodem.todoapp.backend.dto.UserDTO
+import com.nikodem.todoapp.backend.dto.*
 import com.nikodem.todoapp.backend.entity.User
 import com.nikodem.todoapp.backend.mapper.UserMapper
 import com.nikodem.todoapp.backend.repositories.UserRepository
@@ -17,6 +14,8 @@ interface UserService {
     fun save(postUserDTO: PostUserDTO): UserDTO
     fun update(patchUserDTO: PatchUserDTO): UserDTO
     fun resetPassword(username: String, resetPasswordDTO: ResetPasswordDTO)
+    fun changeData(username: String, changeDataDTO: ChangeDataDTO)
+    fun setUserExpired(username: String)
 }
 
 @Service
@@ -54,6 +53,21 @@ class UserServiceImpl(
         val user = userRepository.findByUsernameAndExpiredIsFalse(username) ?: throw RuntimeException()
         passwordEncoder.matches(resetPasswordDTO.oldPassword, user.password)
         user.password = passwordEncoder.encode(resetPasswordDTO.newPassword)
+        userRepository.save(user)
+    }
+
+    override fun changeData(username: String, changeDataDTO: ChangeDataDTO) {
+        val user = userRepository.findByUsernameAndExpiredIsFalse(username) ?: throw RuntimeException()
+        user.firstName = changeDataDTO.firstName
+        user.lastName = changeDataDTO.lastName
+        user.email = changeDataDTO.email
+        user.username = changeDataDTO.username
+        userRepository.save(user)
+    }
+
+    override fun setUserExpired(username: String) {
+        val user = userRepository.findByUsernameAndExpiredIsFalse(username) ?: throw RuntimeException()
+        user.expired = true
         userRepository.save(user)
     }
 }

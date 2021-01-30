@@ -9,7 +9,7 @@ import {makeStyles} from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import {Grid, Link, Snackbar} from "@material-ui/core";
 import MuiAlert from "@material-ui/lab/Alert";
-import {addUser, loginUser} from "./ApiRepository";
+import {loginUser} from "./ApiRepository";
 import {Controller, useForm} from "react-hook-form";
 
 const useStyles = makeStyles((theme) => ({
@@ -36,6 +36,11 @@ function Alert(props) {
     return <MuiAlert elevation={6} variant="filled" {...props} />;
 }
 
+const open = (url) => {
+    const newWindow = window.open(url, "_self")
+    if (newWindow) newWindow.opener = null
+}
+
 const Login = () => {
     const classes = useStyles();
     const [snackbarOpen, setSnackbarOpen] = useState(false);
@@ -43,6 +48,11 @@ const Login = () => {
 
     const submitLoginForm = (loginData) => {
         loginUser(loginData)
+
+        // if (localStorage.length > 0) {
+        //     window.location.reload(false);
+        //     open('http://localhost:3000/')
+        // }
     }
 
     function onSnackbarClose() {
