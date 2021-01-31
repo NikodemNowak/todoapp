@@ -1,21 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="440266f3-c9ff-4b6c-be06-9052bae42098" name="Default Changelist" comment="Update">
-      <change afterPath="$PROJECT_DIR$/../todoapp-backend/src/main/kotlin/com/nikodem/todoapp/backend/controller/ApiInfo.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../todoapp-backend/src/main/kotlin/com/nikodem/todoapp/backend/dto/AccessTokenDTO.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../todoapp-backend/src/main/kotlin/com/nikodem/todoapp/backend/dto/RefreshTokenDTO.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../todoapp-backend/src/main/kotlin/com/nikodem/todoapp/backend/dto/VerifyTokenDTO.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Authentiacion.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../todoapp-backend/src/main/kotlin/com/nikodem/todoapp/backend/controller/AuthController.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../todoapp-backend/src/main/kotlin/com/nikodem/todoapp/backend/controller/AuthController.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../todoapp-backend/src/main/kotlin/com/nikodem/todoapp/backend/controller/UserController.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../todoapp-backend/src/main/kotlin/com/nikodem/todoapp/backend/controller/UserController.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.eslintcache" beforeDir="false" afterPath="$PROJECT_DIR$/.eslintcache" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ApiRepository.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/ApiRepository.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/DropdownMenu.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/DropdownMenu.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/LoginPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/LoginPage.js" afterDir="false" />
-    </list>
+    <list default="true" id="440266f3-c9ff-4b6c-be06-9052bae42098" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -93,7 +79,7 @@
       <workItem from="1611402769047" duration="19136000" />
       <workItem from="1611471756259" duration="3441000" />
       <workItem from="1612017562481" duration="14126000" />
-      <workItem from="1612076500646" duration="7394000" />
+      <workItem from="1612076500646" duration="7670000" />
     </task>
     <task id="LOCAL-00001" summary="Added base structure">
       <created>1609665389015</created>
@@ -179,7 +165,14 @@
       <option name="project" value="LOCAL" />
       <updated>1612037484079</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="Update">
+      <created>1612085018138</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1612085018138</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
