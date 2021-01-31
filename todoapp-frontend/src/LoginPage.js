@@ -11,6 +11,7 @@ import {Grid, Link, Snackbar} from "@material-ui/core";
 import MuiAlert from "@material-ui/lab/Alert";
 import {loginUser} from "./ApiRepository";
 import {Controller, useForm} from "react-hook-form";
+import {useHistory} from "react-router";
 
 const useStyles = makeStyles((theme) => ({
     paper: {
@@ -43,16 +44,18 @@ const open = (url) => {
 
 const Login = () => {
     const classes = useStyles();
+    let history = useHistory();
     const [snackbarOpen, setSnackbarOpen] = useState(false);
     const {control, handleSubmit, errors: fieldsErrors} = useForm();
 
     const submitLoginForm = (loginData) => {
-        loginUser(loginData)
-
-        // if (localStorage.length > 0) {
-        //     window.location.reload(false);
-        //     open('http://localhost:3000/')
-        // }
+        if (loginUser(loginData)) {
+            console.log("login ok");
+            history.push("/");
+            // window.location.reload(false);
+        } else {
+            // blad
+        }
     }
 
     function onSnackbarClose() {

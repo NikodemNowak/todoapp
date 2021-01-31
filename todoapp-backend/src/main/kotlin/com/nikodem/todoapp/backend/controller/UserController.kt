@@ -1,6 +1,7 @@
 package com.nikodem.todoapp.backend.controller
 
 import com.nikodem.todoapp.backend.dto.*
+import com.nikodem.todoapp.backend.security.IsAuthenticated
 import com.nikodem.todoapp.backend.service.UserService
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
@@ -22,6 +23,7 @@ class UserController(
         return ok(userService.findAllNonExpired())
     }
 
+    @IsAuthenticated
     @GetMapping("/username")
     fun getName(): String {
         return getUsername()!!

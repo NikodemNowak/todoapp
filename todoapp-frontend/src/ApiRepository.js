@@ -53,11 +53,17 @@ function getUsers() {
 }
 
 function loginUser(data) {
+    let result = true
     instance.post('/login', data).then(r => {
         localStorage.setItem("accessToken", r.data.accessToken)
         localStorage.setItem("refreshToken", r.data.refreshToken)
         console.log(r)
+    }).catch(reason => {
+        console.log(reason)
+        result = false
     })
+
+    return result
 }
 
 function resetPassword(data) {
@@ -76,7 +82,26 @@ function getUsername() {
     return instance.get('/users/username').then(r => r.data)
 }
 
+function isAuthenticated() {
+    if (localStorage.getItem("accessToken") == null || localStorage.getItem("refreshToken") == null) {
+        return false
+    }
+    instance.post('/token/verify', {accessToken: localStorage.getItem("accessToken")}).then(r=>{
+        console.log(r)
+        return true
+    }).catch(reason => {
+        instance.post('/token/refresh', {refreshToken: localStorage.getItem("refreshToken")}).then(r => {
+            console.log(r)
+            localStorage.setItem("accessToken", r.data.accessToken)
+            return true
+        }).catch(reason1 => {
+            return false
+        })
+    })
+}
+
 export {
+    instance,
     getTaskLists,
     addTask,
     getTaskList,
@@ -89,5 +114,6 @@ export {
     resetPassword,
     changeData,
     deleteUser,
-    getUsername
+    getUsername,
+    isAuthenticated
 }

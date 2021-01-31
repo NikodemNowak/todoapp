@@ -129,7 +129,7 @@ function TaskListMenu() {
 
 function Welcome() {
     const [username, setUsername] = useState('');
-
+    {localStorage.length > 0 ?
     useEffect(() => {
         async function fetchUsername() {
             let data = await getUsername()
@@ -137,7 +137,7 @@ function Welcome() {
         }
 
         fetchUsername()
-    }, [])
+    }, []) : <div/>}
 
     return (
         <div>

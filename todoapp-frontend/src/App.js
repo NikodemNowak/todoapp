@@ -14,6 +14,7 @@ import AddTaskListPage from "./AddTaskListPage";
 import AllTaskListsTablePage from "./AllTaskListsTablePage";
 import TaskListPage from "./TaskListPage";
 import UserPanel from "./UserPanelPage";
+import ProtectedRoute, {PublicRoute} from "./Authentiacion";
 
 export const style = {
     margin: 15
@@ -41,25 +42,13 @@ function App() {
             </nav>
 
             <Switch>
-                <Route path="/login">
-                    {localStorage.length === 0 ? <Login/> : <div/>}
-                </Route>
-                <Route path="/register">
-                    {localStorage.length === 0 ? <Register/> : <div/>}
-                </Route>
-                <Route path="/panel">
-                    {localStorage.length > 0 ? <UserPanel/> : <div/>}
-                </Route>
-                <Route path="/addTaskList">
-                    {localStorage.length > 0 ? <AddTaskListPage/> : <div/>}
-                </Route>
-                <Route path="/taskLists/:id" children={<TaskListPage/>}/>
-                <Route path="/taskLists">
-                    {localStorage.length > 0 ? <AllTaskListsTablePage/> : <div/>}
-                </Route>
-                <Route path="/">
-                    {localStorage.length > 0 ? <HomePage/> : <div/>}
-                </Route>
+                <PublicRoute path="/login" component={Login}/>
+                <PublicRoute path="/register" component={Register}/>
+                <ProtectedRoute path="/panel" component={UserPanel}/>
+                <ProtectedRoute path="/addTaskList" component={AddTaskListPage}/>
+                <ProtectedRoute path="/taskLists/:id" component={TaskListPage}/>
+                <ProtectedRoute path="/taskLists" component={AllTaskListsTablePage}/>
+                <ProtectedRoute path="/" component={HomePage}/>
             </Switch>
         </Router>
     );
