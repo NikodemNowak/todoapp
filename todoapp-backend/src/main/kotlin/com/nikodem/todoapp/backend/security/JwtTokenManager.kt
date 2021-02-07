@@ -30,7 +30,7 @@ class JwtTokenManager {
         return Jwts.builder().apply {
             setSubject(username)
             setIssuedAt(now)
-            //setExpiration(Date(now + (60000 * 60 * 24)))
+            setExpiration(Date(now.time + (60000 * 60 * 24)))
             signWith(SignatureAlgorithm.HS256, SECRET_KEY)
         }.compact()
     }
